@@ -1,5 +1,5 @@
 {
-    "appName": "impACT-reports",
+    "appName": "impact-reports",
     "contact": "alvaroh",
     "team": "hackathon-2020-impACT-license",
     "replicas": { "prod": 2 }
