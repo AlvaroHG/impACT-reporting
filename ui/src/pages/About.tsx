@@ -1,29 +1,32 @@
 import React from 'react';
+import Button from 'antd/es/button';
 
 export const About = () => {
     return (
         <React.Fragment>
-            <h1>About this Demo</h1>
+            <h1>About AI2 ImpACT License</h1>
+            <p/>
             <p>
-                This is a fresh application derived from the{' '}
-                <a href="https://github.com/allenai/skiff-template">Skiff Template</a>. Skiff
-                provides a <a href="https://www.python.org/">Python</a> based API and a UI
-                constructed with <a href="https://www.typescriptlang.org/">TypeScript</a>,{' '}
-                <a href="https://reactjs.org/">ReactJS</a>, and{' '}
-                <a href="https://github.com/allenai/varnish">Varnish</a>.
+                The AI2 ImpACT License is a free license for AI Components.
             </p>
             <p>
-                It's deployed to a Google managed Kubernetes cluster and provides DNS, log
-                aggregation, TLS and other capabilities out of the box, thanks to the{' '}
-                <a href="https://github.com/allenai/skiff">Skiff</a> project.
+                The purpose of the AI2 ImpACT License is to support the use of AI
+                for the common good through Accountability, Collaboration, and Transparency (“ACT”).
+                The AI2 ImpACT License achieves these values by accepting certain ethical constraints on the use of AI
+                and the self-reporting of users regarding their use cases, current applications, energy consumption, data set inputs,
+                and funding sources, as captured and made publicly available in user ImpACT Reports.
             </p>
+            <p/>
             <p>
-                If you have any questions, concerns or feedback please don't hesitate to reach out.
-                You can open a{' '}
-                <a href="https://github.com/allenai/skiff-template/issues/new">Github Issue</a> or
-                contact us at <a href="mailto:reviz@allenai.org">reviz@allenai.org</a>.
+                This website facilitates the creation of the report that is part of this license.
             </p>
-            <p>Smooth sailing!</p>
+            <Button type="primary">Create Report</Button>
+            <p/>
+            <p>
+                Once the report is created and downloaded you may place the report next to the license file in your source code.
+            </p>
+
+            <a href="./licence">Licence</a>
         </React.Fragment>
     );
 };

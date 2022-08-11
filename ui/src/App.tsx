@@ -17,6 +17,7 @@ import { Link } from '@allenai/varnish-react-router';
 
 import { About } from './pages/About';
 import { Home } from './pages/Home';
+import { License } from './pages/License';
 import { AppRoute } from './AppRoute';
 
 
@@ -28,12 +29,17 @@ const ROUTES: AppRoute[] = [
     {
         path: '/',
         label: 'Home',
+        component: About,
+    },
+    {
+        path: '/report',
+        label: 'Report',
         component: Home,
     },
     {
-        path: '/about',
-        label: 'About',
-        component: About,
+        path: '/license',
+        label: 'Licence',
+        component: License,
     },
 ];
 
@@ -133,7 +139,7 @@ export const App = (props: RouteComponentProps) => {
                                         defaultSelectedKeys={[props.location.pathname]}
                                         mode="horizontal">
                                         {ROUTES.map(({ path, label }) => (
-                                            <Menu.Item key={path}>
+                                            <Menu.Item key={path} >
                                                 <Link to={path}>{label}</Link>
                                             </Menu.Item>
                                         ))}
@@ -143,15 +149,15 @@ export const App = (props: RouteComponentProps) => {
                         </Header.Columns>
                     </Header>
                     <Layout>
-                        <LeftSider width={200} collapsedWidth={20}>
-                            <MyMenu {...props} />
-                        </LeftSider>
+
+                        <MyMenu {...props} />
+                        <Content main>
+                        {ROUTES.map(({ path, component }) => (
+                            <Route key={path} path={path} exact component={component} />
+                        ))}
+                    </Content>
                     </Layout>
-                    {/*<Content main>*/}
-                    {/*    {ROUTES.map(({ path, component }) => (*/}
-                    {/*        <Route key={path} path={path} exact component={component} />*/}
-                    {/*    ))}*/}
-                    {/*</Content>*/}
+
                     <Footer />
                 </Layout>
             </Route>
