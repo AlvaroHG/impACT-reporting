@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import Alert from 'antd/es/alert';
-import Button from 'antd/es/button';
-import Input from 'antd/es/input';
 import Select from 'antd/es/select';
 import Form from 'antd/es/form';
 
@@ -24,6 +21,7 @@ const { Option } = Select;
  * form's 'name' attributes with the keys of the 'Query' type that is used to query the API.
  */
 type FormValue = Query;
+
 
 export const Home = () => {
     const history = useHistory();
@@ -144,49 +142,8 @@ export const Home = () => {
      */
     return (
         <React.Fragment>
-            <h1>Example Demo</h1>
-            <p>Enter a question and answers below to see what answer our application selects.</p>
-            <FormWrapper
-                layout="vertical"
-                form={form}
-                scrollToFirstError
-                onFinish={(values) => handleSubmit(values as FormValue)}>
-                <Form.Item label="Question:" name="question" rules={[{ required: true }]}>
-                    <Input.TextArea
-                        autoSize={{ minRows: 4, maxRows: 6 }}
-                        placeholder="Enter a question"
-                    />
-                </Form.Item>
-                <Form.Item label="Answers:" name="choices" rules={[{ required: true }]}>
-                    <Select
-                        mode="tags"
-                        placeholder="Select some possible answers from the list or enter a custom option."
-                        showArrow>
-                        {['Grapefruit', 'Lemon', 'Lime', 'Orange'].map((option) => (
-                            <Option key={option} value={option}>
-                                {option}
-                            </Option>
-                        ))}
-                    </Select>
-                </Form.Item>
-                <Form.Item>
-                    {/* Warning: If you choose to remove this Button's 'loading' attribute, you will be responsible for
-                        handling multiple asynchronous requests which could lead to inconsistencies. */}
-                    <Button type="primary" htmlType="submit" loading={isFetchingAnswer}>
-                        Submit
-                    </Button>
-                </Form.Item>
-                {error && !answer ? (
-                    <Alert type="error" message={error || 'Sorry, something went wrong.'} />
-                ) : null}
-                {!error && answer ? (
-                    <Alert
-                        type="info"
-                        message="Our system answered:"
-                        description={`${answer.answer} (${answer.score}%)`}
-                    />
-                ) : null}
-            </FormWrapper>
+            <h1>AI2 ImpACT License</h1>
+            <p>TODO: Description of license.</p>
         </React.Fragment>
     );
 };
