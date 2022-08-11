@@ -30,11 +30,6 @@ const ROUTES: AppRoute[] = [
     {
         path: '/',
         label: 'Home',
-        component: Home,
-    },
-    {
-        path: '/about',
-        label: 'About',
         component: About,
     },
     {
@@ -44,7 +39,7 @@ const ROUTES: AppRoute[] = [
     },
     {
         path: '/report',
-        label: 'Report Template',
+        label: 'Report',
         component: Report,
     },
 ];

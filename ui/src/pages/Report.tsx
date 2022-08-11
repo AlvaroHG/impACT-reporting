@@ -12,6 +12,8 @@ export const Report = () => {
                 and make this report publicly as described in the license.
             </p>
             <Link to="/report.pdf" target="_blank" download><Button>Download Template</Button></Link>
+            <br/><br/>
+            <Button type="primary" href={'https://docs.google.com/forms/d/e/1FAIpQLSduTmceC6ObKsBwyrfP2qa1pAJH9ffD4ado138XsqVxr3FzWg/viewform?vc=0&c=0&w=1&flr=0&usp=mail_form_link'}>Fill Report</Button>
         </React.Fragment>
     );
 };
