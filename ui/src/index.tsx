@@ -15,6 +15,7 @@ import '@allenai/varnish/theme.css';
 import { App } from './App';
 import { ScrollToTopOnPageChange } from './components/shared';
 
+
 const VarnishedApp = () => (
     <BrowserRouter>
         <ScrollToTopOnPageChange />
@@ -23,5 +24,6 @@ const VarnishedApp = () => (
         </VarnishApp>
     </BrowserRouter>
 );
+
 
 ReactDOM.render(<VarnishedApp />, document.getElementById('root'));

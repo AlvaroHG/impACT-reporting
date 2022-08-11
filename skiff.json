@@ -1,6 +1,6 @@
 {
-    "appName": "skiff-template",
-    "contact": "reviz",
-    "team": "reviz",
+    "appName": "impACT-reports",
+    "contact": "alvaroh",
+    "team": "hackathon-2020-impACT-license",
     "replicas": { "prod": 2 }
 }

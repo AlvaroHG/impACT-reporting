@@ -10,14 +10,15 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { RouteComponentProps, BrowserRouter, Route } from 'react-router-dom';
-import { Header, Content, Footer, Layout } from '@allenai/varnish';
+import { RouteComponentProps, BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Header, Content, Footer, Layout, LeftSider, textStyles } from '@allenai/varnish';
 import Menu from 'antd/es/menu';
 import { Link } from '@allenai/varnish-react-router';
 
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { AppRoute } from './AppRoute';
+
 
 /**
  * An array capturing the available routes in your application. You can
@@ -36,6 +37,78 @@ const ROUTES: AppRoute[] = [
     },
 ];
 
+
+// you need to define the page structure of your app:
+const componentGroups = [
+    {
+        label: 'Group 1',
+        routes: [
+            {
+                path: './bla',
+                label: 'Page 1',
+                component: () => <div>My Page</div>,
+            },
+            {
+                path: './bla2',
+                label: 'Page 2',
+                component: () => <div>My Page</div>,
+            },
+        ],
+    },
+    {
+        label: 'Group 2',
+        routes: [
+            {
+                path: './bla3',
+                label: 'Page 3',
+                component: () => <div>My Page</div>,
+            },
+            {
+                path: './bla4',
+                label: 'Page 4',
+                component: () => <div>My Page</div>,
+            },
+        ],
+    },
+];
+
+const MyMenu = (props: RouteComponentProps) => {
+    const siderWidthExpanded = '225px';
+    const siderWidthCollapsed = '80px';
+    const [menuCollapsed, setMenuCollapsed] = React.useState(false);
+
+    return (
+        <LeftSider
+            collapsible
+            width={siderWidthExpanded}
+            collapsedWidth={siderWidthCollapsed}
+            collapsed={menuCollapsed}
+            onCollapse={() => setMenuCollapsed(!menuCollapsed)}>
+            <Menu
+                defaultSelectedKeys={[props.location.pathname]}
+                defaultOpenKeys={componentGroups.map((c) => c.label)}>
+                {componentGroups.map((group) => (
+                    <Menu.ItemGroup
+                        key={group.label}
+                        title={
+                            !menuCollapsed ? (
+                                <textStyles.Small>{group.label}</textStyles.Small>
+                            ) : (
+                                <Menu.Divider />
+                            )
+                        }>
+                        {group.routes.map((route) => (
+                            <Menu.Item key={route.label}>
+                                <Link to={route.path}>{route.label}</Link>
+                            </Menu.Item>
+                        ))}
+                    </Menu.ItemGroup>
+                ))}
+            </Menu>
+        </LeftSider>
+    );
+};
+
 export const App = (props: RouteComponentProps) => {
     return (
         <BrowserRouter>
@@ -43,13 +116,11 @@ export const App = (props: RouteComponentProps) => {
                 <Layout bgcolor="white">
                     <Header>
                         <Header.Columns columns="auto 1fr 170px">
-                            <Header.Logo label={<Header.AppName>Skiff</Header.AppName>}>
+                            <Header.Logo label={<Header.AppName>impACT</Header.AppName>}>
                                 <SimpleLogo>
-                                    <span role="img" aria-label="Skiff Logo">
+                                    <span role="img" aria-label="impact Logo">
                                         {
-                                            ['⛵️', '⚓️', '🐠', '🛶', '🐟', '🐙', '🐡'][
-                                                Math.floor(Math.random() * 7)
-                                            ]
+                                           '👣️'
                                         }
                                     </span>
                                 </SimpleLogo>
@@ -57,6 +128,7 @@ export const App = (props: RouteComponentProps) => {
                             <span />
                             <OverflowHidden>
                                 <Header.MenuColumn>
+
                                     <Menu
                                         defaultSelectedKeys={[props.location.pathname]}
                                         mode="horizontal">
@@ -70,11 +142,16 @@ export const App = (props: RouteComponentProps) => {
                             </OverflowHidden>
                         </Header.Columns>
                     </Header>
-                    <Content main>
-                        {ROUTES.map(({ path, component }) => (
-                            <Route key={path} path={path} exact component={component} />
-                        ))}
-                    </Content>
+                    <Layout>
+                        <LeftSider width={200} collapsedWidth={20}>
+                            <MyMenu {...props} />
+                        </LeftSider>
+                    </Layout>
+                    {/*<Content main>*/}
+                    {/*    {ROUTES.map(({ path, component }) => (*/}
+                    {/*        <Route key={path} path={path} exact component={component} />*/}
+                    {/*    ))}*/}
+                    {/*</Content>*/}
                     <Footer />
                 </Layout>
             </Route>
@@ -92,7 +169,7 @@ const SimpleLogo = styled.div`
     align-items: center;
     justify-content: center;
     color: #fff;
-    background: ${({ theme }) => theme.color.B2};
+    background: ${({ theme }) => theme.color.R4};
 `;
 
 const OverflowHidden = styled.div`
