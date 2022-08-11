@@ -18,6 +18,7 @@ import { Link } from '@allenai/varnish-react-router';
 import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { License } from './pages/License';
+import { Report } from './pages/Report';
 import { AppRoute } from './AppRoute';
 
 
@@ -32,14 +33,14 @@ const ROUTES: AppRoute[] = [
         component: About,
     },
     {
-        path: '/report',
-        label: 'Report',
-        component: Home,
+        path: '/license',
+        label: 'License',
+        component: License,
     },
     {
-        path: '/license',
-        label: 'Licence',
-        component: License,
+        path: '/report',
+        label: 'Report',
+        component: Report,
     },
 ];
 
@@ -121,43 +122,37 @@ export const App = (props: RouteComponentProps) => {
             <Route path="/">
                 <Layout bgcolor="white">
                     <Header>
-                        <Header.Columns columns="auto 1fr 170px">
+                        <Header.Columns columns="auto 1fr 100px">
                             <Header.Logo label={<Header.AppName>impACT</Header.AppName>}>
                                 <SimpleLogo>
                                     <span role="img" aria-label="impact Logo">
                                         {
-                                           '👣️'
+                                            '👣️'
                                         }
                                     </span>
                                 </SimpleLogo>
                             </Header.Logo>
-                            <span />
                             <OverflowHidden>
-                                <Header.MenuColumn>
-
-                                    <Menu
-                                        defaultSelectedKeys={[props.location.pathname]}
-                                        mode="horizontal">
-                                        {ROUTES.map(({ path, label }) => (
-                                            <Menu.Item key={path} >
-                                                <Link to={path}>{label}</Link>
-                                            </Menu.Item>
-                                        ))}
-                                    </Menu>
-                                </Header.MenuColumn>
+                            <Header.MenuColumn>
+                                <Menu
+                                    defaultSelectedKeys={[props.location.pathname]}
+                                    mode="horizontal"
+                                >
+                                    {ROUTES.map(({ path, label }) => (
+                                        <Menu.Item key={path}>
+                                            <Link to={path}>{label}</Link>
+                                        </Menu.Item>
+                                    ))}
+                                </Menu>
+                            </Header.MenuColumn>
                             </OverflowHidden>
                         </Header.Columns>
                     </Header>
-                    <Layout>
-
-                        <MyMenu {...props} />
-                        <Content main>
+                    <Content main>
                         {ROUTES.map(({ path, component }) => (
                             <Route key={path} path={path} exact component={component} />
                         ))}
                     </Content>
-                    </Layout>
-
                     <Footer />
                 </Layout>
             </Route>

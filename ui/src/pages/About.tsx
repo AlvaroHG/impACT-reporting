@@ -1,6 +1,13 @@
 import React from 'react';
 import Button from 'antd/es/button';
 
+const sections = {"purpose": `The purpose of the AI2 ImpACT License is to support the use of AI for
+        the common good through Accountability, Collaboration, and Transparency (“ACT”).
+        The AI2 ImpACT License achieves these values by accepting certain ethical constraints
+        on the use of AI and the self-reporting of users regarding their use cases, current applications,
+        energy consumption, data set inputs, and funding sources, as captured and made publicly available
+        in user ImpACT Reports.`}
+
 export const About = () => {
     return (
         <React.Fragment>
@@ -26,7 +33,7 @@ export const About = () => {
                 Once the report is created and downloaded you may place the report next to the license file in your source code.
             </p>
 
-            <a href="./licence">Licence</a>
+            <a href="./license">License</a>
         </React.Fragment>
     );
 };
