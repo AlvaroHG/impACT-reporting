@@ -16,8 +16,11 @@ import Menu from 'antd/es/menu';
 import { Link } from '@allenai/varnish-react-router';
 
 import { About } from './pages/About';
+import { FAQ } from './pages/FAQ';
+import { FeedBackSection } from './pages/FeedBackSection';
 import { Home } from './pages/Home';
 import { License } from './pages/License';
+import { Viewer } from './pages/Viewer';
 import { Report } from './pages/Report';
 import { CreateReport } from './pages/CreateReport';
 import { AppRoute } from './AppRoute';
@@ -39,14 +42,24 @@ const ROUTES: AppRoute[] = [
         component: License,
     },
     {
-        path: '/report',
-        label: 'Report',
-        component: Report,
-    },
-    {
         path: '/create',
         label: 'Create Report',
         component: CreateReport,
+    },
+    {
+        path: '/viewer',
+        label: 'Viewer',
+        component: Viewer,
+    },
+    {
+        path: '/faq',
+        label: 'FAQ',
+        component: FAQ,
+    },
+    {
+        path: '/feedback',
+        label: 'Feedback',
+        component: FeedBackSection,
     }
 ];
 
