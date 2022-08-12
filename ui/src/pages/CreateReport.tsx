@@ -7,7 +7,10 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from '@allenai/varnish-react-router';
 import { textStyles, LinkCSS, Layout, LeftSider } from '@allenai/varnish';
 const { SubMenu } = Menu;
+import {DataAccess} from "./report/DataAccess";
 import { EnergySection } from './report/Energy';
+import { FundingSection } from './report/Funding';
+import { ApplicationSection } from './report/Application';
 
 
 // you need to define the page structure of your app:
@@ -246,7 +249,6 @@ const { Option } = antd.Select;
 const { Title } = antd.Typography;
 
 import { Collapse } from 'antd';
-import {DataAccess} from "./report/DataAccess";
 const { Panel } = Collapse;
 
 export const CreateReport= () => {
@@ -365,66 +367,9 @@ export const CreateReport= () => {
                 </p>
             </section>
             <EnergySection {...reportSections[0] } onClickTier={onClickTier} checkedState={state[reportSections[0].label]}/>
-              <DataAccess {...reportSections[1]} onClickTier={onClickTier} checkedState={state[reportSections[1].label]}/>
-            <div id={reportSections[2].label}>
-                <antd.Divider style={{ marginBottom: 60 }}>
-                    {reportSections[2].icon}  {reportSections[2].label}
-                </antd.Divider>
-                    <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                        <antd.Radio.Group onChange={(e) => onChange(reportSections[2].label, e)}>
-                            <antd.Radio value={0}>{reportSections[2].children[0].label}</antd.Radio>
-                                <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                    <antd.Form.Item label="Select the type of funding used for your work.">
-                                        <Select placeholder="Select funding source.">
-                                            <Option value="cannot_legally_disclose">Cannot Legally Disclose</Option>
-                                            <Option value="within_institution">Within Institution</Option>
-                                            <Option value="external">External</Option>
-                                            <Option value="none">None</Option>
-                                        </Select>
-                                    </antd.Form.Item>
-                                </antd.Form>
-                            <antd.Radio value={1}>{reportSections[2].children[1].label}</antd.Radio>
-                                <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                    <antd.Form.Item label="List all organizations or entities involved in funding your work.">
-                                        <Input.TextArea rows={2} size="large"></Input.TextArea>
-                                    </antd.Form.Item>
-                                </antd.Form>
-                            <antd.Radio value={2}>{reportSections[2].children[2].label}</antd.Radio>
-                            <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                <antd.Form.Item label="Provide a detailed record of all funding sources and allocated capital.">
-                                    <Input.TextArea rows={2} size="large"></Input.TextArea>
-                                </antd.Form.Item>
-                            </antd.Form>
-                        </antd.Radio.Group>
-                    </antd.Form>
-            </div>
-            <div id={reportSections[3].label}>
-                <antd.Divider style={{ marginBottom: 60 }}>
-                    {reportSections[3].icon}  {reportSections[3].label}
-                </antd.Divider>
-                    <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                        <antd.Radio.Group onChange={(e) => onChange(reportSections[3].label, e)}>
-                            <antd.Radio value={0}>{reportSections[3].children[0].label}</antd.Radio>
-                                <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                    <antd.Form.Item label="Describe your use and application of the licensed work.">
-                                        <Input.TextArea rows={2} size="large"></Input.TextArea>
-                                    </antd.Form.Item>
-                                </antd.Form>
-                            <antd.Radio value={1}>{reportSections[3].children[1].label}</antd.Radio>
-                                <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                    <antd.Form.Item label="Describe a means by which the public can access a harms model, literature review, or biases analysis pertaining to your application.">
-                                        <Input.TextArea rows={2} size="large"></Input.TextArea>
-                                    </antd.Form.Item>
-                                </antd.Form>
-                            <antd.Radio value={2}>{reportSections[3].children[2].label}</antd.Radio>
-                                <antd.Form labelCol={{ span: 24 }} wrapperCol={{ span: 24 }}>
-                                    <antd.Form.Item label="Describe the nature of the evolution of your work from the licensed work.">
-                                        <Input.TextArea rows={2} size="large"></Input.TextArea>
-                                    </antd.Form.Item>
-                                </antd.Form>
-                        </antd.Radio.Group>
-                    </antd.Form>
-            </div>
+            <DataAccess {...reportSections[1]} onClickTier={onClickTier} checkedState={state[reportSections[1].label]}/>
+            <FundingSection {...reportSections[2]} onClickTier={onClickTier} checkedState={state[reportSections[2].label]}/>
+            <ApplicationSection {...reportSections[3]} onClickTier={onClickTier} checkedState={state[reportSections[3].label]}/>
           </div>
 
       </Layout>
