@@ -19,6 +19,7 @@ import { About } from './pages/About';
 import { Home } from './pages/Home';
 import { License } from './pages/License';
 import { Report } from './pages/Report';
+import { CreateReport } from './pages/CreateReport';
 import { AppRoute } from './AppRoute';
 
 
@@ -42,6 +43,11 @@ const ROUTES: AppRoute[] = [
         label: 'Report',
         component: Report,
     },
+    {
+        path: '/create',
+        label: 'Create Report',
+        component: CreateReport,
+    }
 ];
 
 
