@@ -266,38 +266,36 @@ export const CreateReport= () => {
           {/*        </div>)*/}
           {/*    )*/}
           {/*}*/}
+          <div style={{ width: 1000 }}>
+            <section  ref={ (ref) => sectionRef=ref } style={{ textAlign: 'center', marginBottom: 40 }}>
+                <antd.Space align="start">
+                    <Title level={2} style={{ marginBottom: 0 }}>
+                        ImpACT Report
+                    </Title>
+                </antd.Space>
+            </section>
+            <div id={reportSections[0].label}>
+                <antd.Divider style={{ marginBottom: 60 }}>
+                    {reportSections[0].icon}  {reportSections[0].label}
+                </antd.Divider>
+                    <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+                        <antd.Radio.Group onChange={(e) => onChange(reportSections[0].label, e)}>
+                            <antd.Radio value={0}>{reportSections[0].children[0].label}</antd.Radio>
+                             <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+                                 <p> Describe machines </p>
+                             </antd.Form>
+                            <antd.Radio value={1}>{reportSections[0].children[1].label}</antd.Radio>
+                            <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
+                                <p> Carbon </p>
+                            </antd.Form>
+                            <antd.Radio value={2}>Tier 2</antd.Radio>
+                        </antd.Radio.Group>
+                        <antd.Form.Item label="It">
+                        </antd.Form.Item>
+                    </antd.Form>
+            </div>
+          </div>
 
-           <div style={{ width: 1000 }}>
-        <section  ref={ (ref) => sectionRef=ref } style={{ textAlign: 'center', marginBottom: 40 }}>
-            <antd.Space align="start">
-                <Title level={2} style={{ marginBottom: 0 }}>
-                    ImpACT Report
-                </Title>
-            </antd.Space>
-        </section>
-               <div id={reportSections[0].label}>
-        <antd.Divider style={{ marginBottom: 60 }}>
-            {reportSections[0].icon}  {reportSections[0].label}
-        </antd.Divider>
-        <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-            <antd.Radio.Group onChange={(e) => onChange(reportSections[0].label, e)}>
-                <antd.Radio value={0}>{reportSections[0].children[0].label}</antd.Radio>
-                 <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                     <p> Describe machines </p>
-                 </antd.Form>
-                <antd.Radio value={1}>{reportSections[0].children[1].label}</antd.Radio>
-                <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                    <p> Carbon </p>
-                </antd.Form>
-                <antd.Radio value={2}>Tier 2</antd.Radio>
-            </antd.Radio.Group>
-            <antd.Form.Item label="It">
-            </antd.Form.Item>
-
-        </antd.Form>
-                   </div>
-    </div>
-
-          </Layout>
+      </Layout>
   );
 };
