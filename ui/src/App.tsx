@@ -129,7 +129,7 @@ export const App = (props: RouteComponentProps) => {
                 <Layout bgcolor="white">
                     <Header>
                         <Header.Columns columns="auto 1fr 100px">
-                            <Header.Logo label={<Header.AppName>impACT</Header.AppName>}>
+                            <Header.Logo label={<Header.AppName>ImpACT</Header.AppName>}>
                                 <SimpleLogo>
                                     <span role="img" aria-label="impact Logo">
                                         {

@@ -7,6 +7,8 @@ import { RouteComponentProps } from 'react-router';
 import { Link } from '@allenai/varnish-react-router';
 import { textStyles, LinkCSS, Layout, LeftSider } from '@allenai/varnish';
 const { SubMenu } = Menu;
+import { EnergySection } from './report/Energy';
+
 
 // you need to define the page structure of your app:
 const componentGroups = [
@@ -132,15 +134,24 @@ const reportSections =  [
     {
         label: 'Energy',
         icon: <ApiOutlined/>,
+        component: EnergySection,
         children: [
             {
                 path: './tier_0',
                 label: 'Tier 0',
+                alias: 'Minimum Transparency',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_1',
                 label: 'Tier 1',
+                 alias: 'Green Transparency',
+                component: () => <div>My Page</div>,
+            },
+            {
+                path: './tier_2',
+                label: 'Tier 2',
+                 alias: 'Entropic Transparency',
                 component: () => <div>My Page</div>,
             },
         ],
@@ -152,11 +163,19 @@ const reportSections =  [
             {
                 path: './tier_0',
                 label: 'Tier 0',
+                alias: 'Data Glance',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_1',
                 label: 'Tier 1',
+                alias: 'Data Transparency',
+                component: () => <div>My Page</div>,
+            },
+            {
+                path: './tier_2',
+                label: 'Tier 2',
+                alias: 'Shared Data',
                 component: () => <div>My Page</div>,
             },
         ],
@@ -169,16 +188,19 @@ const reportSections =  [
             {
                 path: './tier_0',
                 label: 'Tier 0',
+                alias: 'Disclosed Funding Type',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_1',
                 label: 'Tier 1',
+                 alias: 'Disclosed Funders',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_2',
                 label: 'Tier 2',
+                alias: 'Disclosed Funding',
                 component: () => <div>My Page</div>,
             },
         ],
@@ -191,16 +213,19 @@ const reportSections =  [
             {
                 path: './tier_0',
                 label: 'Tier 0',
+                alias: 'Known Use',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_1',
                 label: 'Tier 1',
+                alias: 'Examinable Risk',
                 component: () => <div>My Page</div>,
             },
             {
                 path: './tier_2',
                 label: 'Tier 2',
+                alias: 'Open For Continuous Assessment',
                 component: () => <div>My Page</div>,
             },
         ],
@@ -220,12 +245,62 @@ import * as antd from 'antd';
 const { Option } = antd.Select;
 const { Title } = antd.Typography;
 
+import { Collapse } from 'antd';
+import {DataAccess} from "./report/DataAccess";
+const { Panel } = Collapse;
+
 export const CreateReport= () => {
+    //.reduce((cs: any, cv: any) => ({...s, [cv.label]: false}
+    // const init = reportSections.reduce((s: any, v: any) => ({ ...s, [v.label]: v.children.reduce((cs: any, cv: any) => ({...cs, [cv.label]: false}), {})}), {})
+    // const init = { ...(reportSections.map(s => ({[s.label]: { ...s.children.map(c => ({[c.label]: false})) } })))}
+
+    const init = reportSections.reduce((s: any, v: any) => ({ ...s, [v.label]: v.children.map((c: any, i: number) => i == 0)}), {});
+    // const init = reportSections.reduce((s:any, v:any) => ({[v.label]: [true, false, false]}), {});
+    // const init = {[reportSections[0].label]: reportSections[0].children.map((c, i) =>  i ==0 ),
+    //     [reportSections[1].label]: reportSections[1].children.map((c, i) =>  i ==0 )
+    // }
+    console.log("State");
+    console.log(init)
+    const [state, setState] = React.useState<any>(init);
     let sectionRef: any = null;
   const onClick: MenuProps['onClick'] = e => {
       console.log(sectionRef);
     console.log('click ', e);
   };
+
+  const onClickTier = (section: string, e: any) => {
+      console.log(e);
+      console.log(section)
+      console.log(state)
+      let newCheckState = !state[section][e.target.value];
+      console.log("newCheckState");
+      console.log(newCheckState)
+      let newSectionChecks = state[section].map((c: any) => false);
+      if (newCheckState) {
+          for (let i = e.target.value; i >= 0; i--) {
+              newSectionChecks[i] = newCheckState;
+          }
+      }
+      else {
+          let orHigher = false;
+          for (let i = e.target.value+1; i < state[section].length; i++) {
+              orHigher = orHigher || state[section][i];
+          }
+
+            newSectionChecks[e.target.value] = orHigher  ? orHigher : e.target.value!=0 ? newCheckState : state[section][0];
+            console.log(`new state ${newSectionChecks[e.target.value]} ${newCheckState} ${orHigher}`)
+          // if (!orHigher) {
+          //     newSectionChecks[e.target.value] = newCheckState
+          // }
+
+
+          for (let i = e.target.value-1; i >= 0; i--) {
+              newSectionChecks[i] = state[section][i];
+          }
+      }
+
+      setState({...state, [section]: newSectionChecks})
+    }
 
   function onChange(group: string, e: any) {
     console.log(`checked = ${e.target.checked}`);
@@ -251,11 +326,11 @@ export const CreateReport= () => {
                   onClick={onClick}
                   style={{ width: 256 }}
                   defaultSelectedKeys={['1']}
-                  defaultOpenKeys={!allCollapsed ? reportSections.map((c) => c.label) : []}
+                  defaultOpenKeys={!allCollapsed ? reportSections.map((c: any) => c.label) : []}
                   mode="inline"
-                  items={reportSections.map(group => (
+                  items={reportSections.map((group: any) => (
           getItem(group.label, group.label, group.icon,
-        group.children.map(child => getItem(child.label, getSectionId(group.label, child.label)))
+        group.children.map((child: any) => getItem(child.label, getSectionId(group.label, child.label)))
   )
       )
   )}
@@ -285,27 +360,12 @@ export const CreateReport= () => {
                         ImpACT Report
                     </Title>
                 </antd.Space>
+                <p>This report comprises four different sections each with three tiers of impact transparency.
+                    Each increasing tier means more transparency and requires reporting of all the tiers below it.
+                </p>
             </section>
-            <div id={reportSections[0].label}>
-                <antd.Divider style={{ marginBottom: 60 }}>
-                    {reportSections[0].icon}  {reportSections[0].label}
-                </antd.Divider>
-                    <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                        <antd.Radio.Group onChange={(e) => onChange(reportSections[0].label, e)}>
-                            <antd.Radio value={0}>{reportSections[0].children[0].label}</antd.Radio>
-                             <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                                 <p> Describe machines </p>
-                             </antd.Form>
-                            <antd.Radio value={1}>{reportSections[0].children[1].label}</antd.Radio>
-                            <antd.Form labelCol={{ span: 8 }} wrapperCol={{ span: 8 }}>
-                                <p> Carbon </p>
-                            </antd.Form>
-                            <antd.Radio value={2}>Tier 2</antd.Radio>
-                        </antd.Radio.Group>
-                        <antd.Form.Item label="It">
-                        </antd.Form.Item>
-                    </antd.Form>
-            </div>
+            <EnergySection {...reportSections[0] } onClickTier={onClickTier} checkedState={state[reportSections[0].label]}/>
+              <DataAccess {...reportSections[1]} onClickTier={onClickTier} checkedState={state[reportSections[1].label]}/>
             <div id={reportSections[2].label}>
                 <antd.Divider style={{ marginBottom: 60 }}>
                     {reportSections[2].icon}  {reportSections[2].label}
