@@ -284,10 +284,10 @@ export const EnergySection = (props: any) => {
                 </antd.Divider>
             <p>This section encompasses the energy spent to generate the AI soulution.</p>
             {/*<antd.Radio.Group onChange={props.onChange}>*/}
-                 <Collapse bordered={false} defaultActiveKey={props.children.map((child :any, i: number) =>`${i}`)}>
+                 <Collapse bordered={false} defaultActiveKey={[]}>
                 {props.children.map((child :any, i: number) => (
 
-                         <Panel header="" key={`${i}`}>
+                         <Panel header={`Tier ${i}`} key={`${i}`}>
                              <div>
                                  {/*<antd.Radio onClick={(e: any) => props.onClickTier(props.label, e)} value={i}>{child.label}</antd.Radio>*/}
                                  <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>

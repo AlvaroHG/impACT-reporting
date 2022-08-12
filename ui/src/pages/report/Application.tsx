@@ -110,10 +110,10 @@ export const ApplicationSection = (props: any) => {
                 </antd.Divider>
             <p>This section encompasses the use case and application of the source.</p>
             {/*<antd.Radio.Group onChange={props.onChange}>*/}
-                 <Collapse bordered={false} defaultActiveKey={props.children.map((child :any, i: number) =>`${i}`)}>
+                 <Collapse bordered={false} defaultActiveKey={[]}>
                 {props.children.map((child :any, i: number) => (
 
-                         <Panel header="" key={`${i}`}>
+                         <Panel header={`Tier ${i}`} key={`${i}`}>
                              <div>
                                  <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>
                                  {/*<antd.Radio value={i}>{child.label}</antd.Radio>*/}
