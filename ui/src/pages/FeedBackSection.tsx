@@ -7,6 +7,7 @@ import { Link } from '@allenai/varnish-react-router';
 export const FeedBackSection = () => {
     return (
         <React.Fragment>
+            <p>We appreciate any feedback you can give!</p>
              <Button type="primary" href={'https://docs.google.com/forms/d/e/1FAIpQLSfwB8a8kXrWVu0j1i498YM2rqEvSIIn3N-ApKhYKMXTayWZPA/viewform?usp=sf_link'}>Feedback Form</Button>
         </React.Fragment>
     );
