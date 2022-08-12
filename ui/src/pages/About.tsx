@@ -27,7 +27,7 @@ export const About = () => {
             <p>
                 This website facilitates the creation of the report that is part of this license.
             </p>
-            <Button type="primary" href={"./report"}>Create Report</Button>
+            <Button type="primary" href={"./create"}>Create Report</Button>
             <p/>
             <p>
                 Once the report is created and downloaded you may place the report next to the license file in your source code.
