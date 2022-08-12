@@ -275,6 +275,7 @@ export const CreateReport= () => {
                 </Title>
             </antd.Space>
         </section>
+               <div id={reportSections[0].label}>
         <antd.Divider style={{ marginBottom: 60 }}>
             {reportSections[0].icon}  {reportSections[0].label}
         </antd.Divider>
@@ -294,6 +295,7 @@ export const CreateReport= () => {
             </antd.Form.Item>
 
         </antd.Form>
+                   </div>
     </div>
 
           </Layout>
