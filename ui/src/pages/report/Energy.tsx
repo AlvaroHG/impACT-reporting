@@ -287,10 +287,8 @@ export const EnergySection = (props: any) => {
                  <Collapse bordered={false} defaultActiveKey={[]}>
                 {props.children.map((child :any, i: number) => (
 
-                         <Panel header={`Tier ${i}`} key={`${i}`}>
+                         <Panel header={ <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>} key={`${i}`}>
                              <div>
-                                 {/*<antd.Radio onClick={(e: any) => props.onClickTier(props.label, e)} value={i}>{child.label}</antd.Radio>*/}
-                                 <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>
                                  {tiers[i]({...props, ...objArr, setObjArr, alias: child.alias})}
                              </div>
                          </Panel>

@@ -117,9 +117,8 @@ export const FundingSection = (props: any) => {
                  <Collapse bordered={false} defaultActiveKey={[]}>
                 {props.children.map((child :any, i: number) => (
 
-                         <Panel header={`Tier ${i}`}key={`${i}`}>
+                         <Panel header={ <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>} key={`${i}`}>
                              <div>
-                                 <antd.Checkbox value={i} checked={props.checkedState[i]} onClick={(e: any) => props.onClickTier(props.label, e)}>{child.label}</antd.Checkbox>
                                  {/*<antd.Radio value={i}>{child.label}</antd.Radio>*/}
                                  {tiers[i]({...props, ...objArr, setObjArr, ...child})}
                              </div>
